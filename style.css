@@ -1,0 +1,21 @@
+/* Set font family and size */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Set link color */
+a {
+  color: blue;
+}
+
+/* Change background color */
+body {
+  background-color: #f2f2f2;
+}
+
+/* Center page content */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
