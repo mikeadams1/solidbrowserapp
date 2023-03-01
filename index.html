@@ -1,35 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Solid App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <title>Navigation Form</title>
+  <style>
+    #nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #nav-container button {
+      margin: 5px;
+    }
+
+    #results {
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <img src="icon.png" alt="App icon">
-      <h1>Solid App</h1>
+  <div id="nav-container">
+    <form>
+      <label for="url">Enter URL or URI:</label>
+      <input type="text" id="url" name="url">
+      <button type="submit">Go</button>
+    </form>
+    <div>
+      <button id="goBackButton">Back</button>
+      <button id="reloadButton">Reload</button>
     </div>
-  </header>
-  <main>
-    <section class="search">
-      <form action="app.php" method="get">
-        <input type="text" name="query" placeholder="Search">
-        <button type="submit">Go</button>
-      </form>
-    </section>
-    <section class="results">
-      <?php
-      if (isset($_GET['query'])) {
-        $query = urlencode($_GET['query']);
-        $url = 'https://www.bing.com/search?q=' . $query;
-        echo '<iframe src="' . $url . '"></iframe>';
-      }
-      ?>
-    </section>
-  </main>
+  </div>
+  <div id="results"></div>
+  <script>
+    const form = document.querySelector('form');
+    const results = document.getElementById('results');
+    const goBackButton = document.getElementById('goBackButton');
+    const reloadButton = document.getElementById('reloadButton');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const url = document.getElementById('url').value;
+      results.innerHTML = `<iframe src="${url}" style="width:100%; height:100vh;"></iframe>`;
+    });
+
+    goBackButton.addEventListener('click', () => {
+      window.history.back();
+    });
+
+    reloadButton.addEventListener('click', () => {
+      window.location.reload();
+    });
+  </script>
 </body>
 </html>
+
 
