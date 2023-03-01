@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Solid App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <img src="icon.png" alt="App icon">
+      <h1>Solid App</h1>
+    </div>
+  </header>
+  <main>
+    <section class="search">
+      <form action="app.php" method="get">
+        <input type="text" name="query" placeholder="Search">
+        <button type="submit">Go</button>
+      </form>
+    </section>
+    <section class="results">
+      <?php
+      if (isset($_GET['query'])) {
+        $query = urlencode($_GET['query']);
+        $url = 'https://www.bing.com/search?q=' . $query;
+        echo '<iframe src="' . $url . '"></iframe>';
+      }
+      ?>
+    </section>
+  </main>
+</body>
+</html>
 
